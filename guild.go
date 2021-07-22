@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/Postcord/objects"
+	"git.kelwing.dev/Postcord/objects"
 	"github.com/google/go-querystring/query"
 )
 

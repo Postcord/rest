@@ -3,8 +3,9 @@ package rest
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Postcord/objects"
 	"net/http"
+
+	"git.kelwing.dev/Postcord/objects"
 )
 
 func (c *Client) GetTemplate(code string) (*objects.Template, error) {
