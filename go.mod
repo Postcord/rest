@@ -1,4 +1,4 @@
-module git.kelwing.dev/Postcord/rest
+module github.com/Postcord/rest
 
 go 1.14
 
