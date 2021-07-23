@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"git.kelwing.dev/Postcord/objects"
+	"github.com/Postcord/objects"
 )
 
 // Global Commands

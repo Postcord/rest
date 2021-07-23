@@ -3,7 +3,7 @@ package rest
 import (
 	"net/http"
 
-	"git.kelwing.dev/Postcord/objects"
+	"github.com/Postcord/objects"
 )
 
 func (c *Client) GetVoiceRegions() ([]*objects.VoiceRegion, error) {

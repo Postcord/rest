@@ -1,7 +1,5 @@
-git.kelwing.dev/Postcord/objects v0.0.11 h1:3f+mNRAGLaZEqk296eDN+Od7l6MbxXFZR8+bGoVjERA=
-git.kelwing.dev/Postcord/objects v0.0.11/go.mod h1:Zbi3g3hlR6rLhCfr/wFC4jAiWsx+UrCyZUlY9TMIAnQ=
-github.com/Postcord/objects v0.0.10 h1:8X28Dsg/zWvsPT1zSRgsp2C9AZBV3HZc/QgrrUub4aE=
-github.com/Postcord/objects v0.0.10/go.mod h1:DdFNHjas9Xby/YNGwr5XWuD+8kyNvGmtozW4LiF3QF8=
+git.kelwing.dev/Postcord/objects v0.0.12-0.20210723081135-f6c9b9cad7a5 h1:/VRSB13EcFi9qfHoRSu+pBjD97oGbr+ofSSaAFWVn/s=
+git.kelwing.dev/Postcord/objects v0.0.12-0.20210723081135-f6c9b9cad7a5/go.mod h1:DdFNHjas9Xby/YNGwr5XWuD+8kyNvGmtozW4LiF3QF8=
 github.com/cespare/xxhash/v2 v2.1.1 h1:6MnRN8NT7+YBpUIWxHtefFZOKTAPgGjpQSxqLNn0+qY=
 github.com/cespare/xxhash/v2 v2.1.1/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
