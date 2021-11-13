@@ -15,6 +15,7 @@ type HTTPClient interface {
 type Config struct {
 	Authorization string
 	UserAgent     string
+	HTTP2Proxy    string
 	Ratelimiter   Ratelimiter
 	Cache         Cache
 	Proxy         func(*http.Request) (*url.URL, error)
@@ -143,12 +144,16 @@ func (r *request) Send(c *Client) error {
 
 func New(config *Config) *Client {
 	var client Doer
-	if config.Proxy != nil {
-		client = NewProxyClient(config.Proxy)
-	} else {
-		client = &http.Client{
-			Timeout: time.Second * 5,
+	if config.HTTP2Proxy == "" {
+		if config.Proxy != nil {
+			client = NewProxyClient(config.Proxy)
+		} else {
+			client = &http.Client{
+				Timeout: time.Second * 5,
+			}
 		}
+	} else {
+		client = NewHTTP2ProxyClient(config.HTTP2Proxy)
 	}
 	return &Client{
 		rateLimiter: config.Ratelimiter,
