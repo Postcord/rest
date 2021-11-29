@@ -8,7 +8,7 @@ import (
 
 //go:generate env GENERATE=1 go test -run Test_generateInterface .
 
-var phraseShitlist = regexp.MustCompile("rest\\.|\\*rest\\.Client(, )?")
+var phraseShitlist = regexp.MustCompile(`rest\.|\*rest\.Client(, )?`)
 
 func generateInterface() string {
 	t := reflect.TypeOf((*Client)(nil))
