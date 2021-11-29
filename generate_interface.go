@@ -2,10 +2,13 @@ package rest
 
 import (
 	"reflect"
+	"regexp"
 	"strings"
 )
 
 //go:generate env GENERATE=1 go test -run Test_generateInterface .
+
+var phraseShitlist = regexp.MustCompile("rest\\.|\\*rest\\.Client(, )?")
 
 func generateInterface() string {
 	t := reflect.TypeOf((*Client)(nil))
@@ -27,7 +30,9 @@ import (
 
 // RESTClient is the interface that contains all functions in *rest.Client.
 type RESTClient interface {
-` + strings.ReplaceAll(strings.Join(sigs, "\n"), "rest.", "") + `
+` + phraseShitlist.ReplaceAllString(strings.Join(sigs, "\n"), "") + `
 }
+
+var _ RESTClient = (*Client)(nil)
 `
 }

@@ -10,135 +10,137 @@ import (
 
 // RESTClient is the interface that contains all functions in *rest.Client.
 type RESTClient interface {
-	AddGuildCommand(*Client, objects.Snowflake, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
-	AddGuildMember(*Client, objects.Snowflake, objects.Snowflake, *AddGuildMemberParams) (*objects.GuildMember, error)
-	AddGuildMemberRole(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake, string) error
-	AddPinnedMessage(*Client, objects.Snowflake, objects.Snowflake) error
-	AddThreadMember(*Client, objects.Snowflake, objects.Snowflake) error
-	BatchEditApplicationCommandPermissions(*Client, objects.Snowflake, objects.Snowflake, []*objects.GuildApplicationCommandPermissions) ([]*objects.GuildApplicationCommandPermissions, error)
-	BeginGuildPrune(*Client, objects.Snowflake, *BeginGuildPruneParams) (int, error)
-	BulkDeleteMessages(*Client, objects.Snowflake, *DeleteMessagesParams) error
-	BulkOverwriteGlobalCommands(*Client, objects.Snowflake, []*objects.ApplicationCommand) ([]*objects.ApplicationCommand, error)
-	BulkOverwriteGuildCommands(*Client, objects.Snowflake, objects.Snowflake, []*objects.ApplicationCommand) ([]*objects.ApplicationCommand, error)
-	CreateBan(*Client, objects.Snowflake, objects.Snowflake, *CreateGuildBanParams) error
-	CreateChannelInvite(*Client, objects.Snowflake, *CreateInviteParams) (*objects.Invite, error)
-	CreateCommand(*Client, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
-	CreateDM(*Client, *CreateDMParams) (*objects.Channel, error)
-	CreateFollowupMessage(*Client, objects.Snowflake, string, *CreateFollowupMessageParams) (*objects.Message, error)
-	CreateGroupDM(*Client, *CreateGroupDMParams) (*objects.Channel, error)
-	CreateGuild(*Client, *CreateGuildParams) (*objects.Guild, error)
-	CreateGuildChannel(*Client, objects.Snowflake, *ChannelCreateParams) (*objects.Channel, error)
-	CreateGuildFromTemplate(*Client, string, string) (*objects.Guild, error)
-	CreateGuildRole(*Client, objects.Snowflake, *CreateGuildRoleParams) (*objects.Role, error)
-	CreateGuildTemplate(*Client, objects.Snowflake, *CreateGuildTemplateParams) (*objects.Template, error)
-	CreateInteractionResponse(*Client, objects.Snowflake, string, *objects.InteractionResponse) error
-	CreateMessage(*Client, objects.Snowflake, *CreateMessageParams) (*objects.Message, error)
-	CreateReaction(*Client, objects.Snowflake, objects.Snowflake, interface {}) error
-	CreateWebhook(*Client, objects.Snowflake, *CreateWebhookParams) (*objects.Webhook, error)
-	CrossPostMessage(*Client, objects.Snowflake, objects.Snowflake) (*objects.Message, error)
-	DeleteAllReactions(*Client, objects.Snowflake, objects.Snowflake) error
-	DeleteChannel(*Client, objects.Snowflake, string) (*objects.Channel, error)
-	DeleteChannelPermission(*Client, objects.Snowflake, objects.Snowflake, string) error
-	DeleteCommand(*Client, objects.Snowflake, objects.Snowflake) error
-	DeleteEmojiReactions(*Client, objects.Snowflake, objects.Snowflake, interface {}) error
-	DeleteFollowupMessage(*Client, objects.Snowflake, string, objects.Snowflake) error
-	DeleteGuild(*Client, objects.Snowflake) error
-	DeleteGuildCommand(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake) error
-	DeleteGuildIntegration(*Client, objects.Snowflake, objects.Snowflake, string) error
-	DeleteGuildRole(*Client, objects.Snowflake, objects.Snowflake, string) error
-	DeleteGuildTemplate(*Client, objects.Snowflake, string, string) (*objects.Template, error)
-	DeleteInvite(*Client, string, string) (*objects.Invite, error)
-	DeleteMessage(*Client, objects.Snowflake, objects.Snowflake) error
-	DeleteOriginalInteractionResponse(*Client, objects.Snowflake, string) error
-	DeleteOwnReaction(*Client, objects.Snowflake, objects.Snowflake, interface {}) error
-	DeletePinnedMessage(*Client, objects.Snowflake, objects.Snowflake) error
-	DeleteUserReaction(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake, interface {}) error
-	DeleteWebhook(*Client, objects.Snowflake) error
-	DeleteWebhookMessage(*Client, objects.Snowflake, objects.Snowflake, string) error
-	DeleteWebhookWithToken(*Client, objects.Snowflake, string) error
-	EditApplicationCommandPermissions(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake, []*objects.ApplicationCommandPermissions) (*objects.GuildApplicationCommandPermissions, error)
-	EditChannelPermissions(*Client, objects.Snowflake, objects.Snowflake, *EditChannelParams) error
-	EditFollowupMessage(*Client, objects.Snowflake, string, objects.Snowflake, *EditWebhookMessageParams) (*objects.Message, error)
-	EditMessage(*Client, objects.Snowflake, objects.Snowflake, *EditMessageParams) (*objects.Message, error)
-	EditOriginalInteractionResponse(*Client, objects.Snowflake, string, *EditWebhookMessageParams) (*objects.Message, error)
-	EditWebhookMessage(*Client, objects.Snowflake, objects.Snowflake, string, *EditWebhookMessageParams) (*objects.Message, error)
-	ExecuteWebhook(*Client, objects.Snowflake, string, *ExecuteWebhookParams) (*objects.Message, error)
-	FollowNewsChannel(*Client, objects.Snowflake) (*objects.FollowedChannel, error)
-	Gateway(*Client) (*objects.Gateway, error)
-	GatewayBot(*Client) (*objects.Gateway, error)
-	GetApplicationCommandPermissions(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake) (*objects.GuildApplicationCommandPermissions, error)
-	GetAuditLogs(*Client, objects.Snowflake, *GetAuditLogParams) (*objects.AuditLog, error)
-	GetChannel(*Client, objects.Snowflake) (*objects.Channel, error)
-	GetChannelInvites(*Client, objects.Snowflake) ([]*objects.Invite, error)
-	GetChannelMessage(*Client, objects.Snowflake, objects.Snowflake) (*objects.Message, error)
-	GetChannelMessages(*Client, objects.Snowflake, *GetChannelMessagesParams) ([]*objects.Message, error)
-	GetChannelWebhooks(*Client, objects.Snowflake) ([]*objects.Webhook, error)
-	GetCommand(*Client, objects.Snowflake, objects.Snowflake) (*objects.ApplicationCommand, error)
-	GetCommands(*Client, objects.Snowflake) ([]*objects.ApplicationCommand, error)
-	GetCurrentUser(*Client) (*objects.User, error)
-	GetCurrentUserGuilds(*Client, *CurrentUserGuildsParams) ([]*objects.Guild, error)
-	GetFollowupMessage(*Client, objects.Snowflake, string, objects.Snowflake) (*objects.Message, error)
-	GetGuild(*Client, objects.Snowflake) (*objects.Guild, error)
-	GetGuildApplicationCommandPermissions(*Client, objects.Snowflake, objects.Snowflake) ([]*objects.GuildApplicationCommandPermissions, error)
-	GetGuildBan(*Client, objects.Snowflake, objects.Snowflake) (*objects.Ban, error)
-	GetGuildBans(*Client, objects.Snowflake) ([]*objects.Ban, error)
-	GetGuildChannels(*Client, objects.Snowflake) ([]*objects.Channel, error)
-	GetGuildCommand(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake) (*objects.ApplicationCommand, error)
-	GetGuildCommands(*Client, objects.Snowflake, objects.Snowflake) ([]*objects.ApplicationCommand, error)
-	GetGuildIntegrations(*Client, objects.Snowflake) ([]*objects.Integration, error)
-	GetGuildInvites(*Client, objects.Snowflake) ([]*objects.Invite, error)
-	GetGuildMember(*Client, objects.Snowflake, objects.Snowflake) (*objects.GuildMember, error)
-	GetGuildPreview(*Client, objects.Snowflake) (*objects.GuildPreview, error)
-	GetGuildPruneCount(*Client, objects.Snowflake, *GetGuildPruneCountParams) (int, error)
-	GetGuildRoles(*Client, objects.Snowflake) ([]*objects.Role, error)
-	GetGuildTemplates(*Client, objects.Snowflake) ([]*objects.Template, error)
-	GetGuildVanityURL(*Client, objects.Snowflake) (*objects.Invite, error)
-	GetGuildVoiceRegions(*Client, objects.Snowflake) ([]*objects.VoiceRegion, error)
-	GetGuildWebhooks(*Client, objects.Snowflake) ([]*objects.Webhook, error)
-	GetGuildWelcomeScreen(*Client, objects.Snowflake) (*objects.MembershipScreening, error)
-	GetGuildWidget(*Client, objects.Snowflake) (*objects.GuildWidgetJSON, error)
-	GetGuildWidgetImage(*Client, objects.Snowflake, *GuildWidgetImageParams) (image.Image, error)
-	GetGuildWidgetSettings(*Client, objects.Snowflake) (*objects.GuildWidget, error)
-	GetInvite(*Client, string, *GetInviteParams) (*objects.Invite, error)
-	GetOriginalInteractionResponse(*Client, objects.Snowflake, string) (*objects.Message, error)
-	GetPinnedMessages(*Client, objects.Snowflake) ([]*objects.Message, error)
-	GetReactions(*Client, objects.Snowflake, objects.Snowflake, interface {}, *GetReactionsParams) ([]*objects.User, error)
-	GetTemplate(*Client, string) (*objects.Template, error)
-	GetUser(*Client, objects.Snowflake) (*objects.User, error)
-	GetUserConnections(*Client) ([]*objects.Connection, error)
-	GetVoiceRegions(*Client) ([]*objects.VoiceRegion, error)
-	GetWebhook(*Client, objects.Snowflake) (*objects.Webhook, error)
-	GetWebhookWithToken(*Client, objects.Snowflake, string) (*objects.Webhook, error)
-	JoinThread(*Client, objects.Snowflake) error
-	LeaveGuild(*Client, objects.Snowflake) error
-	LeaveThread(*Client, objects.Snowflake) error
-	ListActiveThreads(*Client, objects.Snowflake) ([]*ListThreadsResponse, error)
-	ListGuildMembers(*Client, objects.Snowflake, *ListGuildMembersParams) ([]*objects.GuildMember, error)
-	ListJoinedPrivateArchivedThreads(*Client, objects.Snowflake, ...*ListThreadsParams) (*ListThreadsResponse, error)
-	ListPrivateArchivedThreads(*Client, objects.Snowflake, ...*ListThreadsParams) (*ListThreadsResponse, error)
-	ListPublicArchivedThreads(*Client, objects.Snowflake, ...*ListThreadsParams) (*ListThreadsResponse, error)
-	ListThreadMembers(*Client, objects.Snowflake) ([]*objects.ThreadMember, error)
-	ModifyChannel(*Client, objects.Snowflake, *ModifyChannelParams) (*objects.Channel, error)
-	ModifyCurrentUser(*Client, *ModifyCurrentUserParams) (*objects.User, error)
-	ModifyCurrentUserNick(*Client, objects.Snowflake, *ModifyCurrentUserNickParams) (*ModifyCurrentUserNickParams, error)
-	ModifyGuild(*Client, objects.Snowflake, *ModifyGuildParams) (*objects.Guild, error)
-	ModifyGuildChannelPositions(*Client, objects.Snowflake, []*ModifyChannelPositionParams, string) error
-	ModifyGuildMember(*Client, objects.Snowflake, objects.Snowflake, *ModifyGuildMemberParams) (*objects.GuildMember, error)
-	ModifyGuildRole(*Client, objects.Snowflake, objects.Snowflake, *ModifyGuildRoleParams) (*objects.Role, error)
-	ModifyGuildRolePositions(*Client, objects.Snowflake, []*ModifyGuildRolePositionsParams) ([]*objects.Role, error)
-	ModifyGuildTemplate(*Client, objects.Snowflake, string, *ModifyGuildTemplateParams) (*objects.Template, error)
-	ModifyGuildWelcomeScreen(*Client, objects.Snowflake, *ModifyGuildMembershipScreeningParams) (*objects.MembershipScreening, error)
-	ModifyGuildWidget(*Client, objects.Snowflake, *GuildWidgetParams) (*objects.GuildWidget, error)
-	ModifyWebhook(*Client, objects.Snowflake, *ModifyWebhookParams) (*objects.Webhook, error)
-	ModifyWebhookWithToken(*Client, objects.Snowflake, string, *ModifyWebhookWithTokenParams) (*objects.Webhook, error)
-	RemoveGuildBan(*Client, objects.Snowflake, objects.Snowflake, string) error
-	RemoveGuildMember(*Client, objects.Snowflake, objects.Snowflake, string) error
-	RemoveGuildMemberRole(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake, string) error
-	RemoveThreadMember(*Client, objects.Snowflake, objects.Snowflake) error
-	StartThread(*Client, objects.Snowflake, *StartThreadParams) (*objects.Channel, error)
-	StartThreadWithMessage(*Client, objects.Snowflake, objects.Snowflake, *StartThreadParams) (*objects.Channel, error)
-	StartTyping(*Client, objects.Snowflake) error
-	SyncGuildTemplate(*Client, objects.Snowflake, string) (*objects.Template, error)
-	UpdateCommand(*Client, objects.Snowflake, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
-	UpdateGuildCommand(*Client, objects.Snowflake, objects.Snowflake, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
+	AddGuildCommand(objects.Snowflake, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
+	AddGuildMember(objects.Snowflake, objects.Snowflake, *AddGuildMemberParams) (*objects.GuildMember, error)
+	AddGuildMemberRole(objects.Snowflake, objects.Snowflake, objects.Snowflake, string) error
+	AddPinnedMessage(objects.Snowflake, objects.Snowflake) error
+	AddThreadMember(objects.Snowflake, objects.Snowflake) error
+	BatchEditApplicationCommandPermissions(objects.Snowflake, objects.Snowflake, []*objects.GuildApplicationCommandPermissions) ([]*objects.GuildApplicationCommandPermissions, error)
+	BeginGuildPrune(objects.Snowflake, *BeginGuildPruneParams) (int, error)
+	BulkDeleteMessages(objects.Snowflake, *DeleteMessagesParams) error
+	BulkOverwriteGlobalCommands(objects.Snowflake, []*objects.ApplicationCommand) ([]*objects.ApplicationCommand, error)
+	BulkOverwriteGuildCommands(objects.Snowflake, objects.Snowflake, []*objects.ApplicationCommand) ([]*objects.ApplicationCommand, error)
+	CreateBan(objects.Snowflake, objects.Snowflake, *CreateGuildBanParams) error
+	CreateChannelInvite(objects.Snowflake, *CreateInviteParams) (*objects.Invite, error)
+	CreateCommand(objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
+	CreateDM(*CreateDMParams) (*objects.Channel, error)
+	CreateFollowupMessage(objects.Snowflake, string, *CreateFollowupMessageParams) (*objects.Message, error)
+	CreateGroupDM(*CreateGroupDMParams) (*objects.Channel, error)
+	CreateGuild(*CreateGuildParams) (*objects.Guild, error)
+	CreateGuildChannel(objects.Snowflake, *ChannelCreateParams) (*objects.Channel, error)
+	CreateGuildFromTemplate(string, string) (*objects.Guild, error)
+	CreateGuildRole(objects.Snowflake, *CreateGuildRoleParams) (*objects.Role, error)
+	CreateGuildTemplate(objects.Snowflake, *CreateGuildTemplateParams) (*objects.Template, error)
+	CreateInteractionResponse(objects.Snowflake, string, *objects.InteractionResponse) error
+	CreateMessage(objects.Snowflake, *CreateMessageParams) (*objects.Message, error)
+	CreateReaction(objects.Snowflake, objects.Snowflake, interface {}) error
+	CreateWebhook(objects.Snowflake, *CreateWebhookParams) (*objects.Webhook, error)
+	CrossPostMessage(objects.Snowflake, objects.Snowflake) (*objects.Message, error)
+	DeleteAllReactions(objects.Snowflake, objects.Snowflake) error
+	DeleteChannel(objects.Snowflake, string) (*objects.Channel, error)
+	DeleteChannelPermission(objects.Snowflake, objects.Snowflake, string) error
+	DeleteCommand(objects.Snowflake, objects.Snowflake) error
+	DeleteEmojiReactions(objects.Snowflake, objects.Snowflake, interface {}) error
+	DeleteFollowupMessage(objects.Snowflake, string, objects.Snowflake) error
+	DeleteGuild(objects.Snowflake) error
+	DeleteGuildCommand(objects.Snowflake, objects.Snowflake, objects.Snowflake) error
+	DeleteGuildIntegration(objects.Snowflake, objects.Snowflake, string) error
+	DeleteGuildRole(objects.Snowflake, objects.Snowflake, string) error
+	DeleteGuildTemplate(objects.Snowflake, string, string) (*objects.Template, error)
+	DeleteInvite(string, string) (*objects.Invite, error)
+	DeleteMessage(objects.Snowflake, objects.Snowflake) error
+	DeleteOriginalInteractionResponse(objects.Snowflake, string) error
+	DeleteOwnReaction(objects.Snowflake, objects.Snowflake, interface {}) error
+	DeletePinnedMessage(objects.Snowflake, objects.Snowflake) error
+	DeleteUserReaction(objects.Snowflake, objects.Snowflake, objects.Snowflake, interface {}) error
+	DeleteWebhook(objects.Snowflake) error
+	DeleteWebhookMessage(objects.Snowflake, objects.Snowflake, string) error
+	DeleteWebhookWithToken(objects.Snowflake, string) error
+	EditApplicationCommandPermissions(objects.Snowflake, objects.Snowflake, objects.Snowflake, []*objects.ApplicationCommandPermissions) (*objects.GuildApplicationCommandPermissions, error)
+	EditChannelPermissions(objects.Snowflake, objects.Snowflake, *EditChannelParams) error
+	EditFollowupMessage(objects.Snowflake, string, objects.Snowflake, *EditWebhookMessageParams) (*objects.Message, error)
+	EditMessage(objects.Snowflake, objects.Snowflake, *EditMessageParams) (*objects.Message, error)
+	EditOriginalInteractionResponse(objects.Snowflake, string, *EditWebhookMessageParams) (*objects.Message, error)
+	EditWebhookMessage(objects.Snowflake, objects.Snowflake, string, *EditWebhookMessageParams) (*objects.Message, error)
+	ExecuteWebhook(objects.Snowflake, string, *ExecuteWebhookParams) (*objects.Message, error)
+	FollowNewsChannel(objects.Snowflake) (*objects.FollowedChannel, error)
+	Gateway() (*objects.Gateway, error)
+	GatewayBot() (*objects.Gateway, error)
+	GetApplicationCommandPermissions(objects.Snowflake, objects.Snowflake, objects.Snowflake) (*objects.GuildApplicationCommandPermissions, error)
+	GetAuditLogs(objects.Snowflake, *GetAuditLogParams) (*objects.AuditLog, error)
+	GetChannel(objects.Snowflake) (*objects.Channel, error)
+	GetChannelInvites(objects.Snowflake) ([]*objects.Invite, error)
+	GetChannelMessage(objects.Snowflake, objects.Snowflake) (*objects.Message, error)
+	GetChannelMessages(objects.Snowflake, *GetChannelMessagesParams) ([]*objects.Message, error)
+	GetChannelWebhooks(objects.Snowflake) ([]*objects.Webhook, error)
+	GetCommand(objects.Snowflake, objects.Snowflake) (*objects.ApplicationCommand, error)
+	GetCommands(objects.Snowflake) ([]*objects.ApplicationCommand, error)
+	GetCurrentUser() (*objects.User, error)
+	GetCurrentUserGuilds(*CurrentUserGuildsParams) ([]*objects.Guild, error)
+	GetFollowupMessage(objects.Snowflake, string, objects.Snowflake) (*objects.Message, error)
+	GetGuild(objects.Snowflake) (*objects.Guild, error)
+	GetGuildApplicationCommandPermissions(objects.Snowflake, objects.Snowflake) ([]*objects.GuildApplicationCommandPermissions, error)
+	GetGuildBan(objects.Snowflake, objects.Snowflake) (*objects.Ban, error)
+	GetGuildBans(objects.Snowflake) ([]*objects.Ban, error)
+	GetGuildChannels(objects.Snowflake) ([]*objects.Channel, error)
+	GetGuildCommand(objects.Snowflake, objects.Snowflake, objects.Snowflake) (*objects.ApplicationCommand, error)
+	GetGuildCommands(objects.Snowflake, objects.Snowflake) ([]*objects.ApplicationCommand, error)
+	GetGuildIntegrations(objects.Snowflake) ([]*objects.Integration, error)
+	GetGuildInvites(objects.Snowflake) ([]*objects.Invite, error)
+	GetGuildMember(objects.Snowflake, objects.Snowflake) (*objects.GuildMember, error)
+	GetGuildPreview(objects.Snowflake) (*objects.GuildPreview, error)
+	GetGuildPruneCount(objects.Snowflake, *GetGuildPruneCountParams) (int, error)
+	GetGuildRoles(objects.Snowflake) ([]*objects.Role, error)
+	GetGuildTemplates(objects.Snowflake) ([]*objects.Template, error)
+	GetGuildVanityURL(objects.Snowflake) (*objects.Invite, error)
+	GetGuildVoiceRegions(objects.Snowflake) ([]*objects.VoiceRegion, error)
+	GetGuildWebhooks(objects.Snowflake) ([]*objects.Webhook, error)
+	GetGuildWelcomeScreen(objects.Snowflake) (*objects.MembershipScreening, error)
+	GetGuildWidget(objects.Snowflake) (*objects.GuildWidgetJSON, error)
+	GetGuildWidgetImage(objects.Snowflake, *GuildWidgetImageParams) (image.Image, error)
+	GetGuildWidgetSettings(objects.Snowflake) (*objects.GuildWidget, error)
+	GetInvite(string, *GetInviteParams) (*objects.Invite, error)
+	GetOriginalInteractionResponse(objects.Snowflake, string) (*objects.Message, error)
+	GetPinnedMessages(objects.Snowflake) ([]*objects.Message, error)
+	GetReactions(objects.Snowflake, objects.Snowflake, interface {}, *GetReactionsParams) ([]*objects.User, error)
+	GetTemplate(string) (*objects.Template, error)
+	GetUser(objects.Snowflake) (*objects.User, error)
+	GetUserConnections() ([]*objects.Connection, error)
+	GetVoiceRegions() ([]*objects.VoiceRegion, error)
+	GetWebhook(objects.Snowflake) (*objects.Webhook, error)
+	GetWebhookWithToken(objects.Snowflake, string) (*objects.Webhook, error)
+	JoinThread(objects.Snowflake) error
+	LeaveGuild(objects.Snowflake) error
+	LeaveThread(objects.Snowflake) error
+	ListActiveThreads(objects.Snowflake) ([]*ListThreadsResponse, error)
+	ListGuildMembers(objects.Snowflake, *ListGuildMembersParams) ([]*objects.GuildMember, error)
+	ListJoinedPrivateArchivedThreads(objects.Snowflake, ...*ListThreadsParams) (*ListThreadsResponse, error)
+	ListPrivateArchivedThreads(objects.Snowflake, ...*ListThreadsParams) (*ListThreadsResponse, error)
+	ListPublicArchivedThreads(objects.Snowflake, ...*ListThreadsParams) (*ListThreadsResponse, error)
+	ListThreadMembers(objects.Snowflake) ([]*objects.ThreadMember, error)
+	ModifyChannel(objects.Snowflake, *ModifyChannelParams) (*objects.Channel, error)
+	ModifyCurrentUser(*ModifyCurrentUserParams) (*objects.User, error)
+	ModifyCurrentUserNick(objects.Snowflake, *ModifyCurrentUserNickParams) (*ModifyCurrentUserNickParams, error)
+	ModifyGuild(objects.Snowflake, *ModifyGuildParams) (*objects.Guild, error)
+	ModifyGuildChannelPositions(objects.Snowflake, []*ModifyChannelPositionParams, string) error
+	ModifyGuildMember(objects.Snowflake, objects.Snowflake, *ModifyGuildMemberParams) (*objects.GuildMember, error)
+	ModifyGuildRole(objects.Snowflake, objects.Snowflake, *ModifyGuildRoleParams) (*objects.Role, error)
+	ModifyGuildRolePositions(objects.Snowflake, []*ModifyGuildRolePositionsParams) ([]*objects.Role, error)
+	ModifyGuildTemplate(objects.Snowflake, string, *ModifyGuildTemplateParams) (*objects.Template, error)
+	ModifyGuildWelcomeScreen(objects.Snowflake, *ModifyGuildMembershipScreeningParams) (*objects.MembershipScreening, error)
+	ModifyGuildWidget(objects.Snowflake, *GuildWidgetParams) (*objects.GuildWidget, error)
+	ModifyWebhook(objects.Snowflake, *ModifyWebhookParams) (*objects.Webhook, error)
+	ModifyWebhookWithToken(objects.Snowflake, string, *ModifyWebhookWithTokenParams) (*objects.Webhook, error)
+	RemoveGuildBan(objects.Snowflake, objects.Snowflake, string) error
+	RemoveGuildMember(objects.Snowflake, objects.Snowflake, string) error
+	RemoveGuildMemberRole(objects.Snowflake, objects.Snowflake, objects.Snowflake, string) error
+	RemoveThreadMember(objects.Snowflake, objects.Snowflake) error
+	StartThread(objects.Snowflake, *StartThreadParams) (*objects.Channel, error)
+	StartThreadWithMessage(objects.Snowflake, objects.Snowflake, *StartThreadParams) (*objects.Channel, error)
+	StartTyping(objects.Snowflake) error
+	SyncGuildTemplate(objects.Snowflake, string) (*objects.Template, error)
+	UpdateCommand(objects.Snowflake, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
+	UpdateGuildCommand(objects.Snowflake, objects.Snowflake, objects.Snowflake, *objects.ApplicationCommand) (*objects.ApplicationCommand, error)
 }
+
+var _ RESTClient = (*Client)(nil)
