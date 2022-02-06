@@ -25,7 +25,14 @@ func (c *DefaultHTTPClient) Request(req *request) (*DiscordResponse, error) {
 		reader = bytes.NewReader(req.body)
 	}
 
-	rawReq, err := http.NewRequest(req.method, req.path, reader)
+	var rawReq *http.Request
+	var err error
+
+	if req.ctx != nil {
+		rawReq, err = http.NewRequestWithContext(req.ctx, req.method, req.path, reader)
+	} else {
+		rawReq, err = http.NewRequest(req.method, req.path, reader)
+	}
 	if err != nil {
 		return nil, err
 	}

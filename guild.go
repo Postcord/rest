@@ -10,6 +10,7 @@ import (
 	"net/url"
 
 	"github.com/Postcord/objects"
+	"github.com/Postcord/objects/permissions"
 	"github.com/google/go-querystring/query"
 )
 
@@ -296,12 +297,13 @@ func (c *Client) AddGuildMember(guild, user objects.Snowflake, params *AddGuildM
 }
 
 type ModifyGuildMemberParams struct {
-	Nick      *string              `json:"nick,omitempty"`
-	Roles     *[]objects.Snowflake `json:"roles,omitempty"`
-	Mute      *bool                `json:"mute,omitempty"`
-	Deaf      *bool                `json:"deaf,omitempty"`
-	ChannelID *objects.Snowflake   `json:"channel_id,omitempty"`
-	Reason    string               `json:"-"`
+	Nick                       *string              `json:"nick,omitempty"`
+	Roles                      *[]objects.Snowflake `json:"roles,omitempty"`
+	Mute                       *bool                `json:"mute,omitempty"`
+	Deaf                       *bool                `json:"deaf,omitempty"`
+	ChannelID                  *objects.Snowflake   `json:"channel_id,omitempty"`
+	CommunicationDisabledUntil *objects.Time        `json:"communication_disabled_until,omitempty"`
+	Reason                     string               `json:"-"`
 }
 
 func (c *Client) ModifyGuildMember(guild, member objects.Snowflake, params *ModifyGuildMemberParams) (*objects.GuildMember, error) {
@@ -457,12 +459,12 @@ func (c *Client) GetGuildRoles(guild objects.Snowflake) ([]*objects.Role, error)
 }
 
 type CreateGuildRoleParams struct {
-	Name        string                `json:"name,omitempty"`
-	Permissions objects.PermissionBit `json:"permissions,omitempty"`
-	Color       int                   `json:"color,omitempty"`
-	Hoist       bool                  `json:"hoist,omitempty"`
-	Mentionable bool                  `json:"mentionable,omitempty"`
-	Reason      string                `json:"-"`
+	Name        string                    `json:"name,omitempty"`
+	Permissions permissions.PermissionBit `json:"permissions,omitempty"`
+	Color       int                       `json:"color,omitempty"`
+	Hoist       bool                      `json:"hoist,omitempty"`
+	Mentionable bool                      `json:"mentionable,omitempty"`
+	Reason      string                    `json:"-"`
 }
 
 func (c *Client) CreateGuildRole(guild objects.Snowflake, params *CreateGuildRoleParams) (*objects.Role, error) {
@@ -513,12 +515,12 @@ func (c *Client) ModifyGuildRolePositions(guild objects.Snowflake, params []*Mod
 }
 
 type ModifyGuildRoleParams struct {
-	Name        string                `json:"name,omitempty"`
-	Permissions objects.PermissionBit `json:"permissions,omitempty"`
-	Color       int                   `json:"color,omitempty"`
-	Hoist       *bool                 `json:"hoist,omitempty"`
-	Mentionable *bool                 `json:"mentionable,omitempty"`
-	Reason      string                `json:"-"`
+	Name        string                    `json:"name,omitempty"`
+	Permissions permissions.PermissionBit `json:"permissions,omitempty"`
+	Color       int                       `json:"color,omitempty"`
+	Hoist       *bool                     `json:"hoist,omitempty"`
+	Mentionable *bool                     `json:"mentionable,omitempty"`
+	Reason      string                    `json:"-"`
 }
 
 func (c *Client) ModifyGuildRole(guild, role objects.Snowflake, params *ModifyGuildRoleParams) (*objects.Role, error) {
