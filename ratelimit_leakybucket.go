@@ -24,7 +24,6 @@ type LeakyBucketRatelimiter struct {
 	sync.RWMutex
 	buckets  map[string]*rate.Limiter
 	routeMap map[string]string
-	logger   *zerolog.Logger
 }
 
 func (c *LeakyBucketRatelimiter) Request(httpClient HTTPClient, req *request) (*DiscordResponse, error) {

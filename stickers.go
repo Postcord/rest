@@ -86,14 +86,25 @@ func (c *Client) CreateGuildSticker(ctx context.Context, guildID objects.Snowfla
 	buffer := new(bytes.Buffer)
 	m := multipart.NewWriter(buffer)
 
-	m.WriteField("name", params.Name)
-	m.WriteField("description", params.Description)
+	var err error
+
+	err = m.WriteField("name", params.Name)
+	if err != nil {
+		return nil, err
+	}
+	err = m.WriteField("description", params.Description)
+	if err != nil {
+		return nil, err
+	}
 
 	if params.RawTags == "" {
 		params.RawTags = strings.Join(params.Tags, ", ")
 	}
 
-	m.WriteField("tags", params.RawTags)
+	err = m.WriteField("tags", params.RawTags)
+	if err != nil {
+		return nil, err
+	}
 
 	f, err := m.CreateFormField("file")
 	if err != nil {
