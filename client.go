@@ -2,6 +2,7 @@ package rest
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/url"
 	"time"
@@ -50,11 +51,6 @@ func NewRequest() *request {
 
 func (r *request) WithContext(ctx context.Context) *request {
 	r.ctx = ctx
-	return r
-}
-
-func (r *request) Expect(status ...int) *request {
-	r.expectedStatus = status
 	return r
 }
 
@@ -112,14 +108,10 @@ func (r *request) SendRaw(c *Client) (*DiscordResponse, error) {
 		return nil, err
 	}
 
-	exptectedStatus := false
-	for _, status := range r.expectedStatus {
-		if err = resp.ExpectsStatus(status); err == nil {
-			exptectedStatus = true
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		return resp, &ErrorREST{
+			Message: fmt.Sprintf("Non 2xx status code: %d (%s)", resp.StatusCode, string(resp.Body)),
 		}
-	}
-	if !exptectedStatus {
-		return resp, err
 	}
 
 	if r.method == "GET" && c.cache != nil {
