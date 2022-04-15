@@ -41,8 +41,7 @@ type request struct {
 
 	headers http.Header
 
-	out            interface{}
-	expectedStatus []int
+	out interface{}
 }
 
 func NewRequest() *request {
